@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
-  console.log('allPostsData', allPostsData);
   return {
     props: {
       allPostsData,
