@@ -4,8 +4,9 @@ import Head from 'next/head';
 import dayjs from 'dayjs';
 import utilStyles from '../../styles/utils.module.css';
 import style from './[id].module.css';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const postData = await getPostData(params.id);
   const result = {
     props: {
@@ -13,16 +14,16 @@ export async function getStaticProps({ params }) {
     },
   };
   return result;
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = () => {
   const paths = getAllPostIds();
   return {
     paths,
     fallback: false,
     // fallback: true,
   };
-}
+};
 
 export default function Post({ postData }) {
   return (
